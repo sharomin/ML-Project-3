@@ -1,4 +1,8 @@
+import numpy as np
 import pandas as pd
-name = 'saeed'
+msg = 'hello world'
+print(msg)
 for i in range(1,10):
-    print(name)
+    print(msg)
+
+    
