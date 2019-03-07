@@ -9,7 +9,6 @@ import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 
 # Input data files are available in the "../input/" directory.
 # For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
-
 import os
 #print(os.listdir("/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist"))
 
@@ -21,9 +20,8 @@ train_labels = pd.read_csv(
     '/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/train_labels.csv')
 train_images.shape
 
-
 #Let's show image with id 16
-img_idx = 16
-
+img_idx = 108
 plt.title('Label: {}'.format(train_labels.iloc[img_idx]['Category']))
 plt.imshow(train_images[img_idx])
+print(train_images)
