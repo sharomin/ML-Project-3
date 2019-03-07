@@ -21,7 +21,6 @@ train_labels = pd.read_csv(
 train_images.shape
 
 #Let's show image with id 16
-img_idx = 108
+img_idx = 120
 plt.title('Label: {}'.format(train_labels.iloc[img_idx]['Category']))
 plt.imshow(train_images[img_idx])
-print(train_images)
