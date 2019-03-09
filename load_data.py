@@ -36,6 +36,6 @@ np.savetxt(fname='/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/c
 np.savetxt(fname='/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/labels.csv',
            X=train_labels, delimiter=',', fmt='%d')
 # #Let's show image with id 16
-img_idx = 4
-plt.title('Label: {}'.format(train_labels.iloc[img_idx]['Category']))
-plt.imshow(train_images[img_idx])
+# img_idx = 4
+# plt.title('Label: {}'.format(train_labels.iloc[img_idx]['Category']))
+# plt.imshow(train_images[img_idx])
