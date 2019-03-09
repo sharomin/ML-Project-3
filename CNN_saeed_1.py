@@ -23,7 +23,7 @@ train_loader = torch.utils.data.DataLoader(
                                    torchvision.transforms.Normalize(
                                        (0.1307,), (0.3081,))
                                ])),
-    batch_size=batch_size_train, shuffle=True)
+    batch_size=batch_size_train, shuffle=False)
 
 # test_loader = torch.utils.data.DataLoader(
 #     torchvision.datasets.MNIST('/files/', train=False, download=True,
@@ -35,12 +35,12 @@ train_loader = torch.utils.data.DataLoader(
 #     batch_size=batch_size_test, shuffle=True)
 
 # let's see some examples :
-examples = enumerate(t_loader)
+examples = enumerate(train_loader)
 batch_idx, (example_data, example_targets) = next(examples)
 example_data.shape
 
 fig = plt.figure()
-for i in range(6):
+for i in range(5):
   plt.subplot(2, 3, i+1)
   plt.tight_layout()
   plt.imshow(example_data[i][0], cmap='gray', interpolation='none')
