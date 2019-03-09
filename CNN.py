@@ -6,11 +6,18 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
+
+
+
 #Data Set Prepration
+import os
+print(os.listdir("/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/data"))
+
 transform = transforms.Compose([tv.transforms.ToTensor(), 
                                tv.transforms.Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261))])
 
-trainset = tv.datasets.CIFAR10(root="./data",train=True, download=False, transform=transform)
+trainset = tv.datasets.CIFAR10(
+    root="/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/data", train=True, download=False, transform=transform)
 dataloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=False, num_workers=4)
 # images,_ = iter(dataloader).next()
 # print images.max()
