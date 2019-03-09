@@ -23,7 +23,6 @@ train_labels = pd.read_csv(
 # type(train_images)
 # type(train_labels)
 train_labels = train_labels['Category']
-print(train_images)
 print('Dimensions: %s x %s x %s' % (train_images.shape[0], train_images.shape[1], train_images.shape[2]))
 print('labels: %s' % np.unique(train_labels))
 
@@ -37,6 +36,6 @@ np.savetxt(fname='/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/c
 np.savetxt(fname='/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/labels.csv',
            X=train_labels, delimiter=',', fmt='%d')
 # #Let's show image with id 16
-# img_idx = 85
-# plt.title('Label: {}'.format(train_labels.iloc[img_idx]['Category']))
-# plt.imshow(train_images[img_idx])
+img_idx = 4
+plt.title('Label: {}'.format(train_labels.iloc[img_idx]['Category']))
+plt.imshow(train_images[img_idx])
