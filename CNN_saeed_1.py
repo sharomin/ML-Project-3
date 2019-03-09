@@ -9,9 +9,9 @@ import numpy as np
 # Hyperprameters
 n_epochs = 3
 batch_size_train = 64
-batch_size_test = 1000
+batch_size_test = 10000
 learning_rate = 0.01
-momentum = 0.5
+momentum = 0.9
 log_interval = 10
 
 random_seed = 1
@@ -20,20 +20,24 @@ torch.manual_seed(random_seed)
 
 # load data
 train_loader = torch.utils.data.DataLoader(
-    torchvision.datasets.MNIST('/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/data', train=True, download=True,
-                               transform=torchvision.transforms.Compose([
-                                   torchvision.transforms.ToTensor(),
-                                   torchvision.transforms.Normalize(
-                                       (0.1307,), (0.3081,))
+    torchvision.datasets.MNIST('/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/data', 
+                                train=True, 
+                                download=True,
+                                transform=torchvision.transforms.Compose([
+                                torchvision.transforms.ToTensor(),
+                                torchvision.transforms.Normalize(
+                                (0.1307,), (0.3081,))
                                ])),
     batch_size=batch_size_train, shuffle=False)
 
 test_loader = torch.utils.data.DataLoader(
-    torchvision.datasets.MNIST('/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/test', train=False, download=True,
-                               transform=torchvision.transforms.Compose([
-                                   torchvision.transforms.ToTensor(),
-                                   torchvision.transforms.Normalize(
-                                       (0.1307,), (0.3081,))
+    torchvision.datasets.MNIST('/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/test',
+                                train=False,
+                                download=True,
+                                transform=torchvision.transforms.Compose([
+                                torchvision.transforms.ToTensor(),
+                                torchvision.transforms.Normalize(
+                                (0.1307,), (0.3081,))
                                ])),
     batch_size=batch_size_test, shuffle=True)
 
@@ -85,7 +89,6 @@ train_counter = []
 test_losses = []
 test_counter = [i*len(train_loader.dataset) for i in range(n_epochs + 1)]
 
-
 def train(epoch):
   network.train()
   for batch_idx, (data, target) in enumerate(train_loader):
@@ -96,7 +99,9 @@ def train(epoch):
     optimizer.step()
     if batch_idx % log_interval == 0:
       print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
-          epoch, batch_idx * len(data), len(train_loader.dataset),
+          epoch, 
+          batch_idx * len(data), 
+          len(train_loader.dataset),
           100. * batch_idx / len(train_loader), loss.item()))
       train_losses.append(loss.item())
       train_counter.append(
@@ -117,12 +122,15 @@ def test():
   test_loss /= len(test_loader.dataset)
   test_losses.append(test_loss)
   
-  print('\nTest set: Avg. loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(test_loss, correct, len(test_loader.dataset),100. * correct / len(test_loader.dataset)))
-  if epoch == 8:
-    np.savetxt(fname='/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/final_results.csv',
-               X=pred.numpy(), delimiter=',', fmt='%d')
-    print(pred) 
-  
+  print('\nTest set: Avg. loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(test_loss, 
+                                                                            correct, 
+                                                                            len(test_loader.dataset),
+                                                                            100. * correct / len(test_loader.dataset)))
+#   if epoch == 6:
+#     np.savetxt(fname='/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/final_results.csv',
+#                X=pred.numpy(), delimiter=',', fmt='%d')
+#     print(pred) 
+  return pred
 
 
 test()
@@ -156,3 +164,5 @@ for i in range(4, 9):
   test_counter.append(i*len(train_loader.dataset))
   train(i)
   test()
+  np.savetxt(fname='/Users/saeedshoarayenejati/Downloads/COMP 551/mini project-3/comp-551-w2019-project-3-modified-mnist/final_results.csv',
+                            X=test().numpy(), delimiter=',', fmt='%d')
