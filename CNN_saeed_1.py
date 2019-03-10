@@ -6,6 +6,7 @@ import torch
 import torchvision
 import load_data as input
 import numpy as np
+
 # Hyperprameters
 n_epochs = 3
 batch_size_train = 64
@@ -80,7 +81,8 @@ class Net(nn.Module):
 
 # initialize the network and the optimizer
 network = Net()
-optimizer = optim.SGD(network.parameters(), lr=learning_rate,
+optimizer = optim.SGD(network.parameters(), 
+                      lr=learning_rate,
                       momentum=momentum)
 
 # 4.Training the Model
