@@ -4,7 +4,6 @@ import torch.nn as nn
 import matplotlib.pyplot as plt
 import torch
 import torchvision
-import load_data as input
 import numpy as np
 
 # Hyperprameters
@@ -42,10 +41,11 @@ test_loader = torch.utils.data.DataLoader(
                                ])),
     batch_size=batch_size_test, shuffle=True)
 
-# # let's see some examples :
-# examples = enumerate(train_loader)
-# batch_idx, (example_data, example_targets) = next(examples)
-# example_data.shape
+# let's see some examples :
+examples = enumerate(train_loader)
+batch_idx, (example_data, example_targets) = next(examples)
+example_data.shape
+type(examples)
 
 # fig = plt.figure()
 # for i in range(5):

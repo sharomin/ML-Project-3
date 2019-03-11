@@ -1,4 +1,10 @@
-
+import torch.optim as optim
+import torch.nn.functional as F
+import torch.nn as nn
+import matplotlib.pyplot as plt
+import torch
+import torchvision
+import numpy as np
 
 
 def preprocess(images_train, images_test):
@@ -10,9 +16,9 @@ def preprocess(images_train, images_test):
         image = images_train[i].astype('uint8')
         ret, thresh = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY)
         contourImage, contours, hierarchy = cv2.findContours(thresh, 1, 2)
-        largest_areas = sorted( contours, 
-                                key=lambda cont: cv2.minAreaRect(cont)[
-                                1][0]*cv2.minAreaRect(cont)[1][1])
+        largest_areas = sorted(contours,
+                               key=lambda cont: cv2.minAreaRect(cont)[
+                                   1][0]*cv2.minAreaRect(cont)[1][1])
         cnt = largest_areas[-1]
         rect = cv2.minAreaRect(cnt)
         box = cv2.boxPoints(rect)
