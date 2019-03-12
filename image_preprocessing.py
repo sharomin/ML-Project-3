@@ -6,9 +6,7 @@ import torch
 import torchvision
 import numpy as np
 
-
 def preprocess(images_train, images_test):
-
     largestsize_train = []
     largestsize_test = []
 
